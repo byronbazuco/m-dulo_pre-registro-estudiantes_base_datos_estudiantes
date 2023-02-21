@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="estilos_generales.css" /> -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/estilos_generales.css') }}"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+  </head>
+  <body onload="showPopup()">
+    <nav class="navbar-ctm">
+      <div class="title">Unidad Educativa Marianas de Jesus</div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-2 barra-lateral">
+          <nav class="nav flex-column">
+            <div style="display: flex; justify-content: center; width: 100%">
+              <img
+                class="image-ctm"
+                src="{{ url_for('static', filename='img/icono_marianas.png') }}"
+                alt="logobrand"
+                style="width: 150px"
+              />
+            </div>
+            <hr />
+            <a href="/login">Login</a>
+            <hr />
+            <a href="/register">Register</a>
+            <hr />
+            <a href="/">Pre-registro </a>
+            <hr />
+          </nav>
+        </div>
+        <div class="col-10">
+          <!-- Contenido -->
+          <div class="modal" tabindex="-1" role="dialog" id="popup">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Mensaje de bienvenida</h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                    onclick="hidePopup()"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>El estudiante ya se encuentra matriculado</p>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                    onclick="hidePopup()"
+                  >
+                    Cerrar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container h-100">
+            <div class="row h-100 justify-content-center align-items-center">
+              <form
+                id="myForm"
+                class="form-matriculas"
+                action="http://127.0.0.1:5000/matricula"
+                method="post"
+              >
+                <h3 class="text-center">Estudiante</h3>
+                {% if student.matriculado %}
+                <p style="color: green;font-weight: bold;">El estudiante ha sido aceptado y su matrícula fue aprovada</p>
+                {% else %}
+                <p style="color: red;font-weight: bold;">Aun no ha sido aceptado o se ha rechasado su matrícula por no cumplir con los requisitos necesarios</p>
+                {% endif %}
+
+                <div class="aling-items-form">
+                  <div class="form-group item-form" style="width: 500px">
+                    <h5>Información del Estudiante</h5>
+                    <input
+                      name="nombre_estudiante"
+                      value="{{student.nombre_estudiante}}"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Nombre"
+                      readonly
+                      required
+                    />
+                    <input
+                      name="apellido_estudiante"
+                      value="{{student.apellido_estudiante}}"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Apellido"
+                      readonly
+                      required
+                    />
+                    <input
+                      name="lugar_nacimiento_estudiante"
+                      value="{{student.lugar_nacimiento_estudiante}}"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Lugar de Nacimiento"
+                      readonly
+                      required
+                    />
+                    <input
+                      name="fecha_nacimiento_estudiante"
+                      value="{{student.fecha_nacimiento_estudiante}}"
+                      type="date"
+                      class="form-control my-3"
+                      placeholder="Fecha de Nacimiento"
+                      readonly
+                      required
+                    />
+                    <input
+                      name="cedula_estudiante"
+                      value="{{student.cedula_estudiante}}"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Cédula"
+                      readonly
+                      required
+                    />
+                    <input
+                      name="curso_estudiante"
+                      value="{{student.curso_estudiante}}"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Curso"
+                      readonly
+                      required
+                    />
+                    <input
+                      name="contacto_estudiante"
+                      value="{{student.contacto_estudiante}}"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Contacto"
+                      readonly
+                      required
+                    />
+                    <input
+                      name="email_estudiante"
+                      value="{{student.email_estudiante}}"
+                      type="email"
+                      class="form-control my-3"
+                      placeholder="Email"
+                      readonly
+                      required
+                    />
+                  </div>
+                  <div class="form-group item-form" style="width: 500px">
+                    <h5>Información del Representante Legal</h5>
+                    <input
+                      name="nombre_representante"
+                      value="{{student.nombre_representante}}"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Nombre"
+                      readonly
+                    />
+                    <input
+                      name="apellido_representante"
+                      value="{{student.apellido_representante}}"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Apellido"
+                      readonly
+                    />
+                    <input
+                      name="edad_representante"
+                      value="{{student.edad_representante}}"
+                      type="number"
+                      class="form-control my-3"
+                      placeholder="Edad"
+                      readonly
+                    />
+                    <input
+                      name="cedula_representante"
+                      value="{{student.cedula_representante}}"
+                      type="number"
+                      class="form-control my-3"
+                      placeholder="Cedula"
+                      readonly
+                    />
+                    <input
+                      name="profesion_representante"
+                      value="{{student.profesion_representante}}"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Profesión"
+                      readonly
+                    />
+                    <input
+                      name="contacto_representante"
+                      value="{{student.contacto_representante}}"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Contacto"
+                      readonly
+                    />
+                    <input
+                      name="correo_representante"
+                      value="{{student.correo_representante}}"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Email"
+                      readonly
+                    />
+                    <input
+                      name="lugar_trabajo_representante"
+                      value="{{student.lugar_trabajo_representante}}"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Lugar de Trabajo"
+                      readonly
+                    />
+                  </div>
+                  <div class="form-group item-form" style="width: 500px">
+                    <h5>Datos de la Madre</h5>
+                    <input
+                      name="nombre_madre"
+                      value="{{student.nombre_madre}}"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Nombre"
+                      readonly
+                      required
+                    />
+                    <input
+                      name="apellido_madre"
+                      value="{{student.apellido_madre}}"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Apellido"
+                      readonly
+                      required
+                    />
+                    <input
+                      name="edad_madre"
+                      value="{{student.edad_madre}}"
+                      type="number"
+                      class="form-control my-3"
+                      placeholder="Edad"
+                      readonly
+                      required
+                    />
+                    <input
+                      name="instruccion_madre"
+                      value="{{student.instruccion_madre}}"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Instrucción"
+                      readonly
+                      required
+                    />
+                    <input
+                      name="profesion_madre"
+                      value="{{student.profesion_madre}}"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Profesión"
+                      readonly
+                      required
+                    />
+                    <input
+                      name="contacto_madre"
+                      value="{{student.contacto_madre}}"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Contacto"
+                      readonly
+                      required
+                    />
+                    <input
+                      name="lugar_trabajo_madre"
+                      value="{{student.lugar_trabajo_madre}}"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Lugar de Trabajo"
+                      readonly
+                      required
+                    />
+                  </div>
+                  <div class="form-group item-form" style="width: 500px">
+                    <h5>Datos del Padre</h5>
+                    <input
+                      name="nombre_padre"
+                      value="{{student.nombre_padre}}"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Nombre"
+                      readonly
+                      required
+                    />
+                    <input
+                      name="apellido_padre"
+                      value="{{student.apellido_padre}}"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Apellido"
+                      readonly
+                      required
+                    />
+                    <input
+                      name="edad_padre"
+                      value="{{student.edad_padre}}"
+                      type="number"
+                      class="form-control my-3"
+                      placeholder="Edad"
+                      readonly
+                      required
+                    />
+                    <input
+                      name="instrucion_padre"
+                      value="{{student.instruccion_padre}}"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Instrucción"
+                      readonly
+                      required
+                    />
+                    <input
+                      name="profesion_padre"
+                      value="{{student.profesion_padre}}"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Profesión"
+                      readonly
+                      required
+                    />
+                    <input
+                      name="contacto_padre"
+                      value="{{student.contacto_padre}}"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Contacto"
+                      readonly
+                      required
+                    />
+                    <input
+                      name="lugar_trabajo_padre"
+                      value="{{student.lugar_trabajo_padre}}"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Lugar de Trabajo"
+                      readonly
+                      required
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- Fin Contenido -->
+        </div>
+      </div>
+    </div>
+    <script>
+      function showPopup() {
+        document.getElementById("popup").style.display = "block";
+      }
+
+      function hidePopup() {
+        document.getElementById("popup").style.display = "none";
+      }
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

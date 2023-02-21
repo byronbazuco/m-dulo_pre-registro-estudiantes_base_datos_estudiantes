@@ -1,0 +1,118 @@
+.form-matriculas {
+  /* border: 1px solid #ccc; */
+  padding: 20px;
+  border-radius: 12px;
+
+  /* display: flex; */
+}
+
+.form-register{
+  border: black solid 1px;
+  padding: 1rem;
+  border-radius: 12px;
+  width: 200px;
+}
+
+.dato{
+  margin-left: 2rem;
+  padding: 0.5rem 0;
+  display: flex;
+  gap: 1rem;
+}
+
+.dato .parametro{
+  font-weight: 600;
+}
+
+/* .dato .valor{
+  
+} */
+
+.modal {
+    background-color: rgba(0, 0, 0, 0.527);
+}
+.form-matriculas .boton{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.form-matriculas .aling-items-form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+}
+
+.form-matriculas .aling-items-form .item-form{
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 20px;
+  /* width: 300px; */
+
+}
+
+.barra-lateral{
+  background-color: #1e48bb;
+  min-height: calc(100vh - 57px);
+  
+}
+
+.barra-lateral a {
+  color: white;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  
+  /* color: #009FFD; */
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.barra-lateral hr{
+  border: 0 none #e4e4e4;
+border-top: 1px solid #e4e4e4;
+height: 1px;
+margin: 5px 0;
+display: block;
+clear: both;
+}
+
+.barra-lateral a:hover{
+  color: #75d4c6;
+  /* color: #009FFD; */
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.navbar-ctm {
+  background-color: #021444;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  transition: ease-in 3s;
+}
+
+.navbar-ctm .title {
+  font-size: 25px;
+  color: white;
+}
+
+.navbar-ctm .image-ctm{
+  width: 110px;
+}
+
+.navbar-ctm a {
+  color: white;
+  /* color: #009FFD; */
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.navbar-ctm a:hover {
+  color: #75d4c6;
+}
+
+.navbar-right-ctm a:hover {
+  color: #75d4c6;
+}

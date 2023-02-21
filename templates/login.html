@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="estilos_generales.css" /> -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/estilos_generales.css') }}"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+  </head>
+  <body onload="showPopup()">
+    {% if alert %}
+    <div class="modal" tabindex="-1" role="dialog" id="popup">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Mensaje</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+              onclick="hidePopup()"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>{{alert}}</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+              onclick="hidePopup()"
+            >
+              Cerrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    <nav class="navbar-ctm">
+      <div class="title">Unidad Educativa Marianas de Jesus</div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Nabvar -->
+        <div class="col-2 barra-lateral">
+          <nav class="nav flex-column">
+            <div style="display: flex; justify-content: center; width: 100%">
+              <img
+                class="image-ctm"
+                src="{{ url_for('static', filename='img/icono_marianas.png') }}"
+                alt="logobrand"
+                style="width: 150px"
+              />
+            </div>
+            <hr />
+            <a href="/login">Login</a>
+            <hr />
+            <a href="/register">Register</a>
+            <hr />
+            <a href="/">Pre-registro </a>
+            <hr />
+          </nav>
+        </div>
+        <!-- Nabvar  end-->
+        <div class="col-10">
+          <!-- Contenido -->
+          <div class="container h-100 my-3">
+            <div class="row h-100 justify-content-center align-items-center">
+              <form
+                id="myForm"
+                class="form-register row"
+                action="http://127.0.0.1:5000/login"
+                style="width: 400px;"
+                method="post"
+              >
+                <h3 class="text-center mb-3">Login</h3>
+
+                <div class="form-group">
+                  <label for="email">Email:</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="contrasena">Contraseña:</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="contrasena"
+                    name="contrasena"
+                    required
+                  />
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">
+                  Registrar
+                </button>
+                <!-- </div> -->
+              </form>
+            </div>
+          </div>
+          <!-- Fin Contenido -->
+        </div>
+      </div>
+    </div>
+    <script>
+      function showPopup() {
+        document.getElementById("popup").style.display = "block";
+      }
+
+      function hidePopup() {
+        document.getElementById("popup").style.display = "none";
+      }
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

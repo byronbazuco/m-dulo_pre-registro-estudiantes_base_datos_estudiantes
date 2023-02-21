@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="estilos_generales.css" /> -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/estilos_generales.css') }}"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+  </head>
+  <body onload="showPopup()">
+    <nav class="navbar-ctm">
+      <div class="title">Unidad Educativa Marianas de Jesus</div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-2 barra-lateral">
+          <nav class="nav flex-column">
+            <div style="display: flex; justify-content: center; width: 100%">
+              <img
+                class="image-ctm"
+                src="{{ url_for('static', filename='img/icono_marianas.png') }}"
+                alt="logobrand"
+                style="width: 150px"
+              />
+            </div>
+            <hr />
+            <a href="/login">Login</a>
+            <hr />
+            <a href="/register">Register</a>
+            <hr />
+            <a href="/">Pre-registro </a>
+            <hr />
+          </nav>
+        </div>
+        <div class="col-10">
+          <div class="modal" tabindex="-1" role="dialog" id="popup">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Mensaje de bienvenida</h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                    onclick="hidePopup()"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>
+                    Estimado padre/madre de familia o representante legal, con
+                    la finalidad de conocer la situación actual del estudiante
+                    solicitamos de la manera mas comedida en contestar la
+                    siguiente ficha socioeconómica
+                  </p>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                    onclick="hidePopup()"
+                  >
+                    Cerrar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </nav> 
+          <!-- Formulario -->
+          <div class="container h-100">
+            <div class="row h-100 justify-content-center align-items-center">
+              <form
+                id="myForm"
+                class="form-matriculas"
+                action="http://127.0.0.1:5000/matricula"
+                method="post"
+              >
+                <h3 class="text-center">Módulo de Pre-Pre-registro </h3>
+                <div class="aling-items-form">
+                  <div class="form-group item-form" style="width: 500px">
+                    <h5>Información del Estudiante</h5>
+                    <input
+                      name="nombre_estudiante"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Nombre"
+                      required
+                    />
+                    <input
+                      name="apellido_estudiante"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Apellido"
+                      required
+                    />
+                    <input
+                      name="lugar_nacimiento_estudiante"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Lugar de Nacimiento"
+                      required
+                    />
+                    <input
+                      name="fecha_nacimiento_estudiante"
+                      type="date"
+                      class="form-control my-3"
+                      placeholder="Fecha de Nacimiento"
+                      required
+                    />
+                    <input
+                      name="cedula_estudiante"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Cédula"
+                      required
+                    />
+                    <input
+                      name="curso_estudiante"
+                      id="input-curso"
+                      type="hidden"
+                      class="form-control my-3"
+                      placeholder="Curso"
+                      value="1ro básica"
+                      required
+                    />
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1">Seleccione el curso al que va el estudiante</label>
+                      <select class="form-control" id="exampleFormControlSelect1">
+                        <option>1ro básica</option>
+                        <option>2do básica</option>
+                        <option>3ro básica</option>
+                        <option>4to básica</option>
+                        <option>5to básica</option>
+                        <option>6to básica</option>
+                        <option>7mo colegio</option>
+                        <option>8vo colegio</option>
+                        <option>9no colegio</option>
+                        <option>10mo colegio</option>
+                        <option>1ro Bachillerato</option>
+                        <option>2do Bachillerato</option>
+                        <option>3ro Bachillerato</option>
+                      </select>
+                    </div>
+                    <input
+                      name="contacto_estudiante"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Contacto"
+                      required
+                    />
+                    <input
+                      name="email_estudiante"
+                      type="email"
+                      class="form-control my-3"
+                      placeholder="Email"
+                      required
+                    />
+                    <input
+                      name="promedio_estudiante"
+                      type="number"
+                      class="form-control my-3"
+                      placeholder="Promedio"
+                      required
+                    />
+                  </div>
+                  <div class="form-group item-form" style="width: 500px">
+                    <h5>Información del Representante Legal</h5>
+                    <input
+                      name="nombre_representante"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Nombre"
+                    />
+                    <input
+                      name="apellido_representante"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Apellido"
+                    />
+                    <input
+                      name="edad_representante"
+                      type="number"
+                      class="form-control my-3"
+                      placeholder="Edad"
+                    />
+                    <input
+                      name="cedula_representante"
+                      type="number"
+                      class="form-control my-3"
+                      placeholder="Cedula"
+                    />
+                    <input
+                      name="profesion_representante"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Profesión"
+                    />
+                    <input
+                      name="contacto_representante"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Contacto"
+                    />
+                    <input
+                      name="correo_representante"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Email"
+                    />
+                    <input
+                      name="lugar_trabajo_representante"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Lugar de Trabajo"
+                    />
+                  </div>
+                  <div class="form-group item-form" style="width: 500px">
+                    <h5>Datos de la Madre</h5>
+                    <input
+                      name="nombre_madre"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Nombre"
+                      required
+                    />
+                    <input
+                      name="apellido_madre"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Apellido"
+                      required
+                    />
+                    <input
+                      name="edad_madre"
+                      type="number"
+                      class="form-control my-3"
+                      placeholder="Edad"
+                      required
+                    />
+                    <input
+                      name="instruccion_madre"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Instrucción"
+                      required
+                    />
+                    <input
+                      name="profesion_madre"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Profesión"
+                      required
+                    />
+                    <input
+                      name="contacto_madre"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Contacto"
+                      required
+                    />
+                    <input
+                      name="lugar_trabajo_madre"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Lugar de Trabajo"
+                      required
+                    />
+                  </div>
+                  <div class="form-group item-form" style="width: 500px">
+                    <h5>Datos del Padre</h5>
+                    <input
+                      name="nombre_padre"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Nombre"
+                      required
+                    />
+                    <input
+                      name="apellido_padre"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Apellido"
+                      required
+                    />
+                    <input
+                      name="edad_padre"
+                      type="number"
+                      class="form-control my-3"
+                      placeholder="Edad"
+                      required
+                    />
+                    <input
+                      name="instrucion_padre"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Instrucción"
+                      required
+                    />
+                    <input
+                      name="profesion_padre"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Profesión"
+                      required
+                    />
+                    <input
+                      name="contacto_padre"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Contacto"
+                      required
+                    />
+                    <input
+                      name="lugar_trabajo_padre"
+                      type="text"
+                      class="form-control my-3"
+                      placeholder="Lugar de Trabajo"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="boton">
+                  <button
+                    type="submit"
+                    class="btn btn-block my-3 px-3"
+                    style="background-color: #009ffd; color: white"
+                  >
+                    Registrar
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+
+      let selectElement = document.querySelector('select');
+
+      // Escuchar evento change del select
+      selectElement.addEventListener('change', (e) => {
+        // Obtener valor seleccionado
+        let selectedValue = selectElement.options[selectElement.selectedIndex].value;
+
+        // obtener elemento input hidden
+        let hiddenInputElement = document.getElementById("item-curso");
+
+        // Asignar valor seleccionado a input hidden
+        hiddenInputElement.value = selectedValue;
+      });
+
+      function showPopup() {
+        document.getElementById("popup").style.display = "block";
+      }
+
+      function hidePopup() {
+        document.getElementById("popup").style.display = "none";
+      }
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

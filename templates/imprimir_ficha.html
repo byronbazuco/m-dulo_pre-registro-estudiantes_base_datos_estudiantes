@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="estilos_generales.css" /> -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/estilos_generales.css') }}"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+  </head>
+  <body onload="showPopup()">
+    <!-- Contenido -->
+    <div class="modal" tabindex="-1" role="dialog" id="popup">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Mensaje de bienvenida</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+              onclick="hidePopup()"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Ficha Socioeconómica</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+              onclick="hidePopup()"
+            >
+              Cerrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container h-100">
+      <div class="row h-100 justify-content-center align-items-center">
+        <form
+          id="myForm"
+          class="form-matriculas"
+          action="http://127.0.0.1:5000/matricula"
+          method="post"
+        >
+          <h3 class="text-center">Ficha Socioeconómica</h3>
+          <div class="">
+            <div class="form-group" style="width: 500px">
+              <h5>Información del Estudiante</h5>
+              <div class="dato">
+                <div class="parametro">Nombre:</div>
+                <div class="valor">{{student.nombre_estudiante}}</div>
+              </div>
+
+              <div class="dato">
+                <div class="parametro">Apellido:</div>
+                <div class="valor">{{student.apellido_estudiante}}</div>
+              </div>
+
+              <div class="dato">
+                <div class="parametro">Nacimiento:</div>
+                <div class="valor">{{student.lugar_nacimiento_estudiante}}</div>
+              </div>
+
+              <div class="dato">
+                <div class="parametro">Nacimiento:</div>
+                <div class="valor">{{student.fecha_nacimiento_estudiante}}</div>
+              </div>
+
+              <div class="dato">
+                <div class="parametro">Cédula:</div>
+                <div class="valor">{{student.cedula_estudiante}}</div>
+              </div>
+
+              <div class="dato">
+                <div class="parametro">Curso:</div>
+                <div class="valor">{{student.curso_estudiante}}</div>
+              </div>
+
+              <div class="dato">
+                <div class="parametro">Contacto:</div>
+                <div class="valor">{{student.contacto_estudiante}}</div>
+              </div>
+
+              <div class="dato">
+                <div class="parametro">Email:</div>
+                <div class="valor">{{student.email_estudiante}}</div>
+              </div>
+            </div>
+            <div class="form-group" style="width: 500px">
+              <h5>Información del Representante Legal</h5>
+              <div class="dato">
+                <div class="parametro">Nombre:</div>
+                <div class="valor">{{student.nombre_representante}}</div>
+              </div>
+
+              <div class="dato">
+                <div class="parametro">Apellido:</div>
+                <div class="valor">{{student.apellido_representante}}</div>
+              </div>
+
+              <div class="dato">
+                <div class="parametro">Edad:</div>
+                <div class="valor">{{student.edad_representante}}</div>
+              </div>
+
+              <div class="dato">
+                <div class="parametro">Cedula:</div>
+                <div class="valor">{{student.cedula_representante}}</div>
+              </div>
+
+              <div class="dato">
+                <div class="parametro">Profesión:</div>
+                <div class="valor">{{student.profesion_representante}}</div>
+              </div>
+
+              <div class="dato">
+                <div class="parametro">Contacto:</div>
+                <div class="valor">{{student.contacto_representante}}</div>
+              </div>
+
+              <div class="dato">
+                <div class="parametro">Email:</div>
+                <div class="valor">{{student.correo_representante}}</div>
+              </div>
+
+              <div class="dato">
+                <div class="parametro">Trabajo:</div>
+                <div class="valor">{{student.lugar_trabajo_representante}}</div>
+              </div>
+            </div>
+            <div class="form-group" style="width: 500px">
+              <h5>Datos de la Madre</h5>
+              <div class="dato">
+                <div class="parametro">Nombre:</div>
+                <div class="valor">{{student.nombre_madre}}</div>
+              </div>
+
+              <div class="dato">
+                <div class="parametro">Apellido:</div>
+                <div class="valor">{{student.apellido_madre}}</div>
+              </div>
+
+              <div class="dato">
+                <div class="parametro">Edad:</div>
+                <div class="valor">{{student.edad_madre}}</div>
+              </div>
+
+              <div class="dato">
+                <div class="parametro">Instrucción:</div>
+                <div class="valor">{{student.instruccion_madre}}</div>
+              </div>
+
+              <div class="dato">
+                <div class="parametro">Profesión:</div>
+                <div class="valor">{{student.profesion_madre}}</div>
+              </div>
+
+              <div class="dato">
+                <div class="parametro">Contacto:</div>
+                <div class="valor">{{student.contacto_madre}}</div>
+              </div>
+
+              <div class="dato">
+                <div class="parametro">Trabajo:</div>
+                <div class="valor">{{student.lugar_trabajo_madre}}</div>
+              </div>
+            </div>
+            <div class="form-group" style="width: 500px">
+              <h5>Datos del Padre</h5>
+              <div class="dato">
+                <div class="parametro">Nombre:</div>
+                <div class="valor">{{student.nombre_padre}}</div>
+              </div>
+
+              <div class="dato">
+                <div class="parametro">Apellido:</div>
+                <div class="valor">{{student.apellido_padre}}</div>
+              </div>
+
+              <div class="dato">
+                <div class="parametro">Edad:</div>
+                <div class="valor">{{student.edad_padre}}</div>
+              </div>
+
+              <div class="dato">
+                <div class="parametro">Instrucción:</div>
+                <div class="valor">{{student.instruccion_padre}}</div>
+              </div>
+
+              <div class="dato">
+                <div class="parametro">Profesión:</div>
+                <div class="valor">{{student.profesion_padre}}</div>
+              </div>
+
+              <div class="dato">
+                <div class="parametro">Contacto:</div>
+                <div class="valor">{{student.contacto_padre}}</div>
+              </div>
+
+              <div class="dato">
+                <div class="parametro">Trabajo:</div>
+                <div class="valor">{{student.lugar_trabajo_padre}}</div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Fin Contenido -->
+    <script>
+      function showPopup() {
+        // document.getElementById("popup").style.display = "block";
+        print();
+      }
+
+      function hidePopup() {
+        document.getElementById("popup").style.display = "none";
+      }
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
